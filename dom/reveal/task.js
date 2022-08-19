@@ -18,5 +18,5 @@ let isInViewport = function(element){
     const viewportHeight = window.innerHeight;
     const elementTop = element.getBoundingClientRect().top;
     const elemBottom = element.getBoundingClientRect().bottom;   
-    return elementTop > viewportHeight || elemBottom < 0   ?  false : true ;
+    return elementTop < viewportHeight && elemBottom > 0;
 };
