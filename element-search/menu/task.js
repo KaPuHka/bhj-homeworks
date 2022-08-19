@@ -13,11 +13,17 @@ menuSub.forEach(item => {
 let menuLinks = document.querySelectorAll("ul.menu_main > li.menu__item > a.menu__link"); 
 menuLinks = Array.from(menuLinks);
 menuLinks.forEach(item => { item.onclick = function(){
-    closeAll();
     let itemsSub = item.closest('.menu__item');
     let itemActive = itemsSub.querySelector('.menu_sub');
     let itemClass = itemActive.className;
-    itemActive.className = itemClass + ' menu_active';
+    if (itemClass.includes(' menu_active')){
+        closeAll();
+    }
+    else{
+        closeAll();
+        itemActive.className = itemClass + ' menu_active';
+    }
+        
 }});
 
 function closeAll(){
