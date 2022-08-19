@@ -17,14 +17,14 @@ class Game {
   }
 
   registerEvents() {
-    let me = this;
+    bind: update = update.bind(this);
     document.addEventListener('keyup', update);
-    
+   
     function update(event){
-      if(event.key === me.currentSymbol.textContent){
-        me.success();
+      if(event.key === this.currentSymbol.textContent){
+        this.success();
       } else {
-        me.fail();
+        this.fail();
       }
     }
   }
