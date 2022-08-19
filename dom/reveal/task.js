@@ -1,17 +1,16 @@
 let reveals = document.querySelectorAll('.reveal');
 reveals = Array.from(reveals);
 
-setInterval(()=> {
-    reveals.forEach( item => {
-        let itemClass = item.className;
-        if (isInViewport(item)){
-            item.className = itemClass + ' reveal_active';
-        } else {
-            item.className = itemClass.replace('reveal_active','');
-        }
-    }); 
-}, 1000);
-
+document.addEventListener('scroll', () => {
+        reveals.forEach( item => {
+            let itemClass = item.className;
+            if (isInViewport(item)){
+                item.className = itemClass + ' reveal_active';
+            } else {
+                item.className = itemClass.replace('reveal_active','');
+            }
+        }); 
+});
 
 
 let isInViewport = function(element){
