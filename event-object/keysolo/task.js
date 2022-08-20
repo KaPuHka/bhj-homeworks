@@ -17,7 +17,7 @@ class Game {
   }
 
   registerEvents() {
-    bind: update = update.bind(this);
+    update = update.bind(this);
     document.addEventListener('keyup', update);
    
     function update(event){
