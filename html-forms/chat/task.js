@@ -54,6 +54,8 @@ function clean(ele){
 function send(ele){
     // if (event.key === 'Enter'
     if (ele.value !== '') {
+        let chartId = 'bot-'+document.getElementsByClassName('message_client').length+1;
+
         // inner html
         messages.innerHTML += `
             <div class="message message_client">
@@ -66,18 +68,18 @@ function send(ele){
         </div>
         `;
         messages.innerHTML += `
-            <div class="message" id="`+getCurrentFormattedTime()+`">
+            <div class="message">
             <div class="message__time">`
                 +getCurrentFormattedTime()+
             `</div>
-            <div class="message__text">`
+            <div class="message__text" id="`+chartId+`">`
                 +texts[Math.floor(Math.random()*texts.length)]+
             `</div>
         </div>
         `;
 
-        let last = document.getElementById(getCurrentFormattedTime());
-       // window.scrollTo(0, container.scrollHeight);
+        let last = document.getElementById(chartId);
+        last.scrollIntoView();
     }
 }
 
