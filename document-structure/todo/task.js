@@ -3,24 +3,22 @@ let inputTxt = document.getElementById('task__input');
 let addTxt = document.getElementById('tasks__add');
 let listTxt = document.getElementById('tasks__list');
 
+/*
 addTxt.addEventListener('click', (event) => {
     event.preventDefault();
     send(inputTxt);
-    clean(inputTxt);
-})
+    inputTxt.value = '';
+}) */
 
 
 inputTxt.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         event.preventDefault();
-        send(inputTxt);
-        clean(inputTxt);
+        if (inputTxt.value.trim().length > 0)
+            send(inputTxt);
+        inputTxt.value = '';
     }
 })
-
-function clean(ele){
-        ele.value = '';
-}
 
 
 function send(ele){
@@ -28,7 +26,7 @@ function send(ele){
     id = "remove-"+count;
     let inner = `<div class="task" id="`+id+`">
                     <div class="task__title">`
-                        + ele.value + 
+                        + ele.value.trim() + 
                     `</div>
                     <a href="#" class="task__remove" id="`+count+`">&times;</a>
                 </div>`;
