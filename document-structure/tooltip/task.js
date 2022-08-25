@@ -13,8 +13,8 @@ textsWithTips.forEach((element, idx)=> {
         let inner = `<div class="tooltip" id="`+id+`" style="left: `+posLeft+`px; top: `+posTop+`px">`
                                 + tip +
                         `</div> `;
-                    
-        element.insertAdjacentHTML('beforeEnd', inner);
+        if (!document.getElementById(id))           
+            element.insertAdjacentHTML('afterEnd', inner);
         let txt = document.getElementById(id);
         if (!txt.className.includes('tooltip_active'))
             txt.classList.add('tooltip_active')
