@@ -25,26 +25,25 @@ function welcome(userId) {
 // login
 btn.addEventListener('click', (e) => {
     e.preventDefault();
-    let params = '';
+    let params = new FormData();
     inputControls.forEach(iControl => {
-        params += iControl.name+'='+iControl.value+'&';
+        params.append(iControl.name, iControl.value);
     });
-   
+    
+
     const xml = new XMLHttpRequest();
     const url = 'https://netology-slow-rest.herokuapp.com/auth.php';
-    xml.open('POST', url, false);
-    xml.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    
-    xml.onreadystatechange = function() {
-        if(xml.readyState == 4 && xml.status == 200) {
-           let result = JSON.parse(xml.responseText);
-           if (result.success) { 
-             userId = result.user_id;
-             welcome(userId);
-           } else {
-                alert('try again :-(');
-           }
-        }
-    }
+    xml.open('POST', url);
+    xml.responseType = 'json';
+    xml.onload = function() {
+      let result = xml.response;
+      if (result.success) { 
+        userId = result.user_id;
+        welcome(userId);
+      } else {
+        alert('try again :-(');
+      } 
+      sform.reset();  
+    } 
     xml.send(params);
 })
